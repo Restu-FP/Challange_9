@@ -1,28 +1,30 @@
-// app/layout.js
-import './globals.css';
-import Link from 'next/link';
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata = {
-  title: 'Katalog Online',
-  description: 'Katalog E-Commerce Sederhana',
+  title: "Webstore Katalog",
+  description: "Toko online sederhana dengan fitur keranjang belanja",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id">
-      <body className="bg-gray-100">
-        <header className="bg-white shadow p-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Katalog Online</h1>
-          <Link href="/cart">
-            <button className="relative">
-              🛒
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
-                {/* Jumlah item di keranjang */}
-              </span>
-            </button>
-          </Link>
+    <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-gradient-to-br from-white via-indigo-50 to-pink-50 text-gray-800 antialiased`}>
+        <header className="bg-white shadow-md py-4 px-6 mb-6">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-2xl font-bold text-indigo-700">🛒 Toko Online</h1>
+          </div>
         </header>
-        <main className="p-4">{children}</main>
+        {children}
+        <footer className="mt-12 text-center text-sm text-gray-500 py-6 border-t border-gray-200">
+          © {new Date().getFullYear()} Toko Online. All rights reserved.
+        </footer>
       </body>
     </html>
   );
